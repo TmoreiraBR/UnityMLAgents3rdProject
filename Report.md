@@ -89,15 +89,18 @@ Also as a consequence of modifying the action-value function, the gradient of th
 Detailed Algorithim pseudocode, edited from [[1]](#1)
 
 **Algorithm 1: MADDPG algorithm**
+
 **For** episode = 1,M **do**
-* Initialize a random process **N** for action exploration
+* Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=vec R"> for action exploration
 * Receive initial state <img src="https://render.githubusercontent.com/render/math?math=vec x">
 * **For** t = 1 to max-episode-length **do**
-  * Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=G"> (Gaussian Noise) for action exploration
-  * Receive initial observation state <img src="https://render.githubusercontent.com/render/math?math=s_1">
-  * **For** t = 1,T **do**
-    * Select action <img src="https://render.githubusercontent.com/render/math?math=a_t = sum(\mu(s, \phi), G_t)">  according to the current policy and exploration noise
-    * Execute action <img src="https://render.githubusercontent.com/render/math?math=a_t"> and observe reward <img src="https://render.githubusercontent.com/render/math?math=r'"> and new state <img src="https://render.githubusercontent.com/render/math?math=s'"> (' = t + 1)
+  * for each agent i, select action <img src="https://render.githubusercontent.com/render/math?math=a_i = \mu_i(o_i, \phi_i) + R_t"> w.r.t. the current policy and exploration
+  * Execute actions <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]"> and observe reward <img src="https://render.githubusercontent.com/render/math?math=r"> and new state <img src="https://render.githubusercontent.com/render/math?math=\vec x'">
+  * Store <img src="https://render.githubusercontent.com/render/math?math=(\vec x, \vec a, r, \vec x')"> in a replay buffer D
+  * <img src="https://render.githubusercontent.com/render/math?math=\vec x \leftarrow \vec x'">
+  * **For** Agent i=1 to N **do**
+    * Sample a random minibatch of **S** samples <img src="https://render.githubusercontent.com/render/math?math=(\vec x^j, \vec a^j, r^j, \vec x'^j)"> from D
+    * Set <img src="https://render.githubusercontent.com/render/math?math=y^j = r_i^j + \gamma \hat{q_i}(\vec x', \vec a',\theta_{frozen}))">, where <img src="https://render.githubusercontent.com/render/math?math=\vec a' = \vec{\mu'}(\vec{\phi}_{frozen})">
     * Store transition <img src="https://render.githubusercontent.com/render/math?math=(s_t,a_t,r',s')"> in **R**
     * Sample a random minibatch of **T** transitions <img src="https://render.githubusercontent.com/render/math?math=(s_i,a_i,r',s')"> from **R**
     * Set <img src="https://render.githubusercontent.com/render/math?math=y_i=sum(r', \gamma q(s',\mu(s', \phi_{frozen}),\theta_{frozen})))">
