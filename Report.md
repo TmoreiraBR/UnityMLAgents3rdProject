@@ -99,8 +99,8 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
   * Store <img src="https://render.githubusercontent.com/render/math?math=(\vec x, \vec a, \vec r, \vec x')"> in a replay buffer D
   * <img src="https://render.githubusercontent.com/render/math?math=\vec x \leftarrow \vec x'">
   * **For** Agent i=1 to N **do**
-    * Sample a random minibatch of **S** samples <img src="https://render.githubusercontent.com/render/math?math=(\vec x^j, \vec a^j, r^j, \vec x'^j)"> from D
-    * Set <img src="https://render.githubusercontent.com/render/math?math=y^j = r_i^j + \gamma \hat{q_i}(\vec x', \vec a',\theta_{frozen}))">, where <img src="https://render.githubusercontent.com/render/math?math=\vec a' = \vec{\mu'}(\vec{\phi}_{frozen})">
+    * Sample a random minibatch of **S** samples <img src="https://render.githubusercontent.com/render/math?math=(\vec x^j, \vec a^j, \vec r^j, \vec x'^j)"> from D
+    * Set <img src="https://render.githubusercontent.com/render/math?math=y^j = sum(r_i^j, \gamma \hat{q_i}(\vec x', \vec a',\theta_{frozen}))">, where <img src="https://render.githubusercontent.com/render/math?math=\vec a' = \vec{\mu'}(\vec{\phi}_{frozen})">
     * Store transition <img src="https://render.githubusercontent.com/render/math?math=(s_t,a_t,r',s')"> in **R**
     * Sample a random minibatch of **T** transitions <img src="https://render.githubusercontent.com/render/math?math=(s_i,a_i,r',s')"> from **R**
     * Set <img src="https://render.githubusercontent.com/render/math?math=y_i=sum(r', \gamma q(s',\mu(s', \phi_{frozen}),\theta_{frozen})))">
