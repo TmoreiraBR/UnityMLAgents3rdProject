@@ -1,19 +1,27 @@
 <<<<<<< HEAD
 [//]: # (Image References)
 
-[image2]: https://github.com/TmoreiraBR/UnityMLAgents2ndProject-MultiAgent/blob/main/TrainedResults.jpg  "Training Agents"
+[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/TrainedResults.jpg  "Training Agents"
 
 # Report for Project 2: Continuous Control
 
 ### Introduction
 
-For solving this project a DDPG Algorithim, with 4 neural networks (target and local networks for Actor and Critic, respectivelly), was utilized.
+For solving this project a multi-agent deep deterministic policy gradient (MADDPG) Algorithim, was utilized.
 
-The Algorithim, based on [[1]](#1), can be interpreted as an approximate DQN for continuous action spaces [[2]](#2).
+The Algorithim, based on [[1]](#1), works in a very similar fashion to DDPG [[2]](#2), with the main differences being:
+
+* Each individual Agent (in a competitive or cooperative setting) contains its own Actor (policy) and Critic (state-action value function estimate) Networks.
+
+* The Critic of each Agent is augmented in order to have a state (or state-action) representation of the whole environment (including states and actions from other Agents).
+
+## DDPG Recap (Taken from https://github.com/TmoreiraBR/UnityMLAgents2ndProject-MultiAgent/blob/main/Report.md)
+
+DDPG can be interpreted as an approximate DQN for continuous action spaces [[3]](#3).
 
 Similarly to DQN, the Critic part of DDPG utilizes Experience Replay to train a parametrized action value function <img src="https://render.githubusercontent.com/render/math?math=\hat{q}_{\pi}(s,a,\theta)">, in an off-policy manner (<img src="https://render.githubusercontent.com/render/math?math=\theta"> are the neural network weights).
 
-Target and local networks, with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> and <img src="https://render.githubusercontent.com/render/math?math=\theta"> respectively, are also utilized by the Critic to avoid unstable learning ([[3]](#3), [[4]](#4)) when minimizing the loss function [[2]](#2):
+Target and local networks, with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen}"> and <img src="https://render.githubusercontent.com/render/math?math=\theta"> respectively, are also utilized by the Critic to avoid unstable learning ([[4]](#4), [[5]](#5)) when minimizing the loss function [[3]](#3):
 
 <img src="https://render.githubusercontent.com/render/math?math=L(\theta) = \hat{E}_{(s,a,r',s')}[sum(r',  \gamma \hat{q}(s',a^*',\theta_{frozen})) - \hat{q}(s,a,\theta)]^2">,
 
@@ -53,7 +61,7 @@ The solution for this work is based on the environment with 20 independent arms.
 
 ## Algorithm
 
-Detailed Algorithim pseudocode, edited from [[1]](#1)
+Detailed Algorithim pseudocode, edited from [[2]](#2)
 
 **Algorithm 1: DDPG algorithm**
 * Randomly initialize critic network <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta)"> and actor <img src="https://render.githubusercontent.com/render/math?math=\mu(s, \phi)"> with weights <img src="https://render.githubusercontent.com/render/math?math=\theta"> and <img src="https://render.githubusercontent.com/render/math?math=\phi">.
@@ -112,13 +120,16 @@ Implement and compare current results with other deep reinforcement learning alg
 
 ## References
 <a id="1">[1]</a> 
-Lillicrap, T.P., Hunt, J.J., Pritzel, A., Heess, N., Erez, T., Tassa, Y., Silver, D. and Wierstra, D., 2015. Continuous control with deep reinforcement learning. arXiv preprint arXiv:1509.02971.
+Lowe, R., Wu, Y.I., Tamar, A., Harb, J., Pieter Abbeel, O. and Mordatch, I., 2017. Multi-agent actor-critic for mixed cooperative-competitive environments. Advances in neural information processing systems, 30, pp.6379-6390.
 
 <a id="2">[2]</a> 
-Miguel Morales, Grokkiing, Deep Reinforcement Learning
+Lillicrap, T.P., Hunt, J.J., Pritzel, A., Heess, N., Erez, T., Tassa, Y., Silver, D. and Wierstra, D., 2015. Continuous control with deep reinforcement learning. arXiv preprint arXiv:1509.02971.
 
 <a id="3">[3]</a> 
-Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. and Petersen, S., 2015. Human-level control through deep reinforcement learning. nature, 518(7540), pp.529-533.
+Miguel Morales, Grokkiing, Deep Reinforcement Learning
 
 <a id="4">[4]</a> 
+Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A.A., Veness, J., Bellemare, M.G., Graves, A., Riedmiller, M., Fidjeland, A.K., Ostrovski, G. and Petersen, S., 2015. Human-level control through deep reinforcement learning. nature, 518(7540), pp.529-533.
+
+<a id="5">[5]</a> 
 https://github.com/TmoreiraBR/UnityMLAgents1stProject/blob/main/Report.md
