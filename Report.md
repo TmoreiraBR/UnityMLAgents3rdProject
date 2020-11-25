@@ -1,9 +1,11 @@
 <<<<<<< HEAD
 [//]: # (Image References)
 
-[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/TrainedResults.jpg  "Training Agents"
+[image1]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/TrainedResults.jpg  "Training Agents"
+[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/MADDPG.PNG =100x20  "ImageArticle"
 
-# Report for Project 2: Continuous Control
+
+# Report for Project 3: Collaboration and Competition
 
 ### Introduction
 
@@ -15,7 +17,7 @@ The Algorithim, based on [[1]](#1), works in a very similar fashion to DDPG [[2]
 
 * The Critic of each Agent is augmented in order to have a state (or state-action) representation of the whole environment (including states and actions from other Agents).
 
-## DDPG Recap (Taken from https://github.com/TmoreiraBR/UnityMLAgents2ndProject-MultiAgent/blob/main/Report.md)
+## DDPG Recap (see https://github.com/TmoreiraBR/UnityMLAgents2ndProject-MultiAgent/blob/main/Report.md):
 
 DDPG can be interpreted as an approximate DQN for continuous action spaces [[3]](#3).
 
@@ -57,7 +59,20 @@ Finally, differently from DQN, DDPG applies a soft update to the target network 
 
 where <img src="https://render.githubusercontent.com/render/math?math=\tau"> is a hyperparameter << 1 that controls the target networks update speed.
 
-The solution for this work is based on the environment with 20 independent arms. The experience for each arm is stored in the replay buffer during the interaction with the environment. The usage of multiple agents greatly increases the generalization capabilities of the algorithim.
+## MADDPG
+
+In a multi-agent setting, where each Agent has its own Actor and Critic networks (as in DDPG), if the state representation for each Agent is only local (i.e. each Agent is not aware of states and actions of other agents) the environment can appear Non-Stationary, which violates the Markov Assumption for convergence [[1]](#1). 
+
+In other to solve this issue, MADDPG proposes an augmented Critic for each Agent "i", named centralized action-value function, that receives observations and actions for all agents in the environment:
+
+<img src="https://render.githubusercontent.com/render/math?math=q_i^{\pi} (\vec x, \vec a)">,
+
+where <img src="https://render.githubusercontent.com/render/math?math=\vec x"> is a vector with all observation from all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec x = [o_1, o_2, ..., o_N]"> and <img src="https://render.githubusercontent.com/render/math?math=\vec a"> is a vector with all actions performed by all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]">.
+
+The Actor for each Agent remains unaltered, where each Agent's action only depends on the Agent local observations. A visual representation of MADDPG was sketched in [[1]](#1):
+
+![ImageArticle][image2]
+Image taken from [[1]](#1).
 
 ## Algorithm
 
@@ -111,7 +126,7 @@ Output Layer  | 4 Continuous Actions (torques applied to joints)
 
 A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of 30+ rewards after approximately 300 Episodes. The weights for the Actor and Critic policy networks are saved in checkpoint_actor.pth and checkpoint_critic.pth, respectively.
 
-![Training Agents][image2]
+![Training Agents][image1]
 
 
 ## Future Ideas
