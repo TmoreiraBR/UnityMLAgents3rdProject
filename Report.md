@@ -86,13 +86,13 @@ Also as a consequence of modifying the action-value function, the gradient of th
 
 ## Algorithm
 
-Detailed Algorithim pseudocode, edited from [[2]](#2)
+Detailed Algorithim pseudocode, edited from [[1]](#1)
 
-**Algorithm 1: DDPG algorithm**
-* Randomly initialize critic network <img src="https://render.githubusercontent.com/render/math?math=\hat{q}(s,a,\theta)"> and actor <img src="https://render.githubusercontent.com/render/math?math=\mu(s, \phi)"> with weights <img src="https://render.githubusercontent.com/render/math?math=\theta"> and <img src="https://render.githubusercontent.com/render/math?math=\phi">.
-* Initialize target networks with weights <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen} \leftarrow \theta">, <img src="https://render.githubusercontent.com/render/math?math=\phi_{frozen} \leftarrow \phi"> 
-* Initialize replay buffer **R**
-* **For** episode = 1,M **do**
+**Algorithm 1: MADDPG algorithm**
+**For** episode = 1,M **do**
+* Initialize a random process **N** for action exploration
+* Receive initial state <img src="https://render.githubusercontent.com/render/math?math=vec x">
+* **For** t = 1 to max-episode-length **do**
   * Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=G"> (Gaussian Noise) for action exploration
   * Receive initial observation state <img src="https://render.githubusercontent.com/render/math?math=s_1">
   * **For** t = 1,T **do**
