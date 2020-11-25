@@ -96,7 +96,7 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 * **For** t = 1 to max-episode-length **do**
   * for each agent i, select action <img src="https://render.githubusercontent.com/render/math?math=a_i = sum(\mu_i(o_i, \phi_i), R_t)"> w.r.t. the current policy and exploration
   * Execute actions <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]"> and observe reward <img src="https://render.githubusercontent.com/render/math?math=r"> and new state <img src="https://render.githubusercontent.com/render/math?math=\vec x'">
-  * Store <img src="https://render.githubusercontent.com/render/math?math=(\vec x, \vec a, r, \vec x')"> in a replay buffer D
+  * Store <img src="https://render.githubusercontent.com/render/math?math=(\vec x, \vec a, \vec r, \vec x')"> in a replay buffer D
   * <img src="https://render.githubusercontent.com/render/math?math=\vec x \leftarrow \vec x'">
   * **For** Agent i=1 to N **do**
     * Sample a random minibatch of **S** samples <img src="https://render.githubusercontent.com/render/math?math=(\vec x^j, \vec a^j, r^j, \vec x'^j)"> from D
