@@ -63,7 +63,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\tau"> is 
 
 In a multi-agent setting, where each Agent has its own Actor and Critic networks (as in DDPG), if the state representation for each Agent is only local (i.e. each Agent is not aware of states and actions of other agents) the environment can appear Non-Stationary, which violates the Markov Assumption for convergence [[1]](#1). 
 
-In other to solve this issue, MADDPG proposes an augmented Critic for each Agent, named centralized action-value function, that receives observations and actions for all agents in the environment:
+In other to solve this issue, MADDPG proposes an augmented Critic for each Agent "i", named centralized action-value function, that receives observations and actions for all agents in the environment:
 
 <img src="https://render.githubusercontent.com/render/math?math=q_i^{\pi} (\vec x, \vec a)">,
 
