@@ -105,42 +105,52 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
     * Update Actor using the sampled policy gradient: <img src="https://render.githubusercontent.com/render/math?math=\nabla_{\phi_i} J(\mu_i) = \frac{1}{S} \sum_j \nabla_{\mu_i}\hat{q_i}(\vec x^j, \vec{\mu^j}(\vec{\phi}), \theta) \nabla_{\phi_i} \mu_i(o_i^j, \phi_i)">
   * Update target network parameters for each Agent i: 
   <img src="https://render.githubusercontent.com/render/math?math=\theta' \leftarrow sum(\tau \theta_i, (1 - \tau) \theta_i')">
+  
   <img src="https://render.githubusercontent.com/render/math?math=\phi' \leftarrow sum(\tau \phi_i, (1 - \tau) \phi_i')">
     
 ## Hyperparameters and Neural Network Architecture
 
-After a couple of attempts hyperparameter values that could reach the minimum of an average .5+ rewards in 100 episodes were obtained. These are:
+After a couple of attempts, hyperparameter values that could reach the minimum of average score of +0.5 (over 100 consecutive episodes, after taking the maximum over both agents) were obtained. These are:
 
 Hyperparameter value  | Description
 ------------- | -------------
-n_episodes=500  | maximum number of training episodes
-max_t=1000  | maximum number of timesteps per episode
+n_episodes=4000  | maximum number of training episodes
 BUFFER_SIZE = int(1e6)   | replay buffer size
 BATCH_SIZE = 256 | minibatch size
 GAMMA = 0.99   | discount factor
 TAU = 1e-3  | Value between 0 and 1 -> The closer to 1 the greater the target weights update will be (if TAU = 1, then <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen} = \theta">)
 LR_ACTOR = 1e-4  | learning rate for updating Actor policy network weights
 LR_CRITIC = 1e-4  | learning rate for updating Critic policy network weights
+theta = .15  | Ornstein-Uhlenbeck
+sigma = 0.4  | Ornstein-Uhlenbeck
 
-Neural Network Layers (local and target networks)  | Number of nodes 
+Neural Network Layers for Actor (local and target networks)  | Number of nodes 
 ------------- | -------------
-Input Layer  | 33 Input States
-1st Hidden Layer  | 128 (followed by ReLu Activation function)
+Input Layer  | 24 Input States
+1st Hidden Layer  | 256 (followed by ReLu Activation function)
 2nd Hidden Layer  | 128 (followed by ReLu Activation function)
 3rd Hidden Layer  | 64 (followed by ReLu Activation function)
-Output Layer  | 4 Continuous Actions (torques applied to joints)
+Output Layer  | 2 Continuous Actions (x-y racket movement)
+
+Neural Network Layers for Critic (local and target networks)  | Number of nodes 
+------------- | -------------
+Input Layer  | 48 Input States (All states for both Agents)
+1st Hidden Layer  | 256 (followed by ReLu Activation function)
+2nd Hidden Layer  | 128 (followed by ReLu Activation function)
+3rd Hidden Layer  | 64 (followed by ReLu Activation function)
+Output Layer  | 1 (action-value estimate)
 
 
 ## Results
 
-A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of 30+ rewards after approximately 300 Episodes. The weights for the Actor and Critic policy networks are saved in checkpoint_actor.pth and checkpoint_critic.pth, respectively.
+A plot for the mean return every 100 episodes is shown below. We see that our trained Agent is capable of surparsing the requirements of .5 score after approximately 2700 Episodes. The weights for each Agent's Actor and Critic policy networks are saved in agent1_checkpoint_actor.pth, agent1_checkpoint_critic.pth and agent2_checkpoint_actor.pth, agent2_checkpoint_critic.pth, respectivelly.
 
 ![Training Agents][image1]
 
 
 ## Future Ideas
 
-Implement and compare current results with other deep reinforcement learning algorithims for continuous control, such as PPO, A2C and A3C.
+Great improvement of results were obtained when fine-tunning the noise function. Investigation of different Noise functions, with noise decay for instance, could prove very beneficial for speeding up training. This could also be an indicative that the exploration-exploitation dillema still has room from improvement in MADDPG.
 
 ## References
 <a id="1">[1]</a> 
