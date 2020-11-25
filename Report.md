@@ -74,15 +74,15 @@ The Actor for each Agent remains unaltered, where each Agent's action only depen
 ![ImageArticle][image2]
 Image taken from [[1]](#1).
 
-Modification of the Critic´s action-value function estimate, modifies the loss function from DDPG (to be minimized) into:
+Modification of the Critic´s action-value function estimate, modifies the loss function from DDPG (to be minimized for each Agent "i") into:
 
 <img src="https://render.githubusercontent.com/render/math?math=L(\theta) = \hat{E}_{(\vec x,\vec a,r',\vec x')}[sum(r',  \gamma \hat{q_i}(\vec x', \vec{\mu'}(\vec{\phi}_{frozen}),\theta_{frozen})) - \hat{q}(\vec x, \vec{\mu}(\vec{\phi}),\theta)]^2">, where
 
 <img src="https://render.githubusercontent.com/render/math?math=\vec{\mu}(\vec{\phi}) = [\mu_1(o_1, \phi_1), \mu_2(o_2, \phi_2), ...,  \mu_N(o_N, \phi_N),]"> is the vector of deterministic policies from Agents 1 to N.
 
-Also as a consequence of modifying the action-value function, gradient of the loss function for the Actor modifies into
+Also as a consequence of modifying the action-value function, gradient of the loss function for the Actor of each Agent "i" modifies into:
  
-<img src="https://render.githubusercontent.com/render/math?math=\nabla_{\phi} J(\phi) = \hat{E}_{(s)}[\nabla_{\mu(s, \phi)}\hat{q}_{\pi}(s, \mu(s, \phi), \theta) \nabla_{\phi} \mu(s, \phi)]">.
+<img src="https://render.githubusercontent.com/render/math?math=\nabla_{\phi_i} J(\mu_i) = \hat{E}_{(s)}[\nabla_{\mu_i}\hat{q_i}(\vec x, \vec{\mu}(\vec{\phi}), \theta) \nabla_{\phi_i} \mu_i(o_i, \phi_i)]">.
 
 ## Algorithm
 
