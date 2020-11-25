@@ -11,9 +11,9 @@ For solving this project a multi-agent deep deterministic policy gradient (MADDP
 
 The Algorithim, based on [[1]](#1), works in a very similar fashion to DDPG, with the differences being:
 
-*Each individual Agent (in a competitive or cooperative setting) contains its own Actor (policy) and Critic (state-action value function estimate) Networks.
+* Each individual Agent (in a competitive or cooperative setting) contains its own Actor (policy) and Critic (state-action value function estimate) Networks.
 
-*The Critic of each Agent is augmented in order to have a state (or state-action) representation of the whole environment (including states and actions from other Agents).
+* The Critic of each Agent is augmented in order to have a state (or state-action) representation of the whole environment (including states and actions from other Agents).
 
 DDPG can be interpreted as an approximate DQN for continuous action spaces [[2]](#2).
 
