@@ -91,7 +91,7 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 **Algorithm 1: MADDPG algorithm**
 
 **For** episode = 1,M **do**
-* Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=vec R"> for action exploration
+* Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=R"> for action exploration
 * Receive initial state <img src="https://render.githubusercontent.com/render/math?math=vec x">
 * **For** t = 1 to max-episode-length **do**
   * for each agent i, select action <img src="https://render.githubusercontent.com/render/math?math=a_i = sum(\mu_i(o_i, \phi_i), R_t)"> w.r.t. the current policy and exploration
