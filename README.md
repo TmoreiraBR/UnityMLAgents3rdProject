@@ -78,7 +78,7 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 Follow the instructions in `Tennis.ipynb` to get started with training your own agent!  
 
-For this particular implementation MADDPG was used to solve the environment.
+For this particular implementation, MADDPG was used to solve the environment.
 
 ### (Optional) Challenge: Crawler Environment
 
