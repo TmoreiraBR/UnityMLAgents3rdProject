@@ -120,8 +120,8 @@ GAMMA = 0.99   | discount factor
 TAU = 1e-3  | Value between 0 and 1 -> The closer to 1 the greater the target weights update will be (if TAU = 1, then <img src="https://render.githubusercontent.com/render/math?math=\theta_{frozen} = \theta">)
 LR_ACTOR = 1e-4  | learning rate for updating Actor policy network weights
 LR_CRITIC = 1e-4  | learning rate for updating Critic policy network weights
-theta = .15  | Ornstein-Uhlenbeck
-sigma = 0.4  | Ornstein-Uhlenbeck
+theta = .15  | Ornstein-Uhlenbeck parameter controlling shift from mean 
+sigma = 0.4  | Ornstein-Uhlenbeck Noise Magnitude around theta * (mu - x)
 
 Neural Network Layers for Actor (local and target networks)  | Number of nodes 
 ------------- | -------------
