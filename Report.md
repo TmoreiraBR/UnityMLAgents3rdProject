@@ -2,7 +2,7 @@
 [//]: # (Image References)
 
 [image1]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/TrainedResults.jpg  "Training Agents"
-[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/MADDPG.PNG =100x20  "ImageArticle"
+[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/MADDPG.PNG  "ImageArticle"
 
 
 # Report for Project 3: Collaboration and Competition
