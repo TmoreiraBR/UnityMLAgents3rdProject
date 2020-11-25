@@ -69,10 +69,15 @@ In other to solve this issue, MADDPG proposes an augmented Critic for each Agent
 
 where <img src="https://render.githubusercontent.com/render/math?math=\vec x"> is a vector with all observation from all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec x = [o_1, o_2, ..., o_N]"> and <img src="https://render.githubusercontent.com/render/math?math=\vec a"> is a vector with all actions performed by all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]">.
 
-The Actor for each Agent remains unaltered, where each Agent's action only depends on the Agent local observations. A visual representation of MADDPG was sketched in [[1]](#1):
+The Actor for each Agent remains unaltered, where each Agent's action only depends on the Agent's local observations. Visually, the MADDPG framework can be seen as:
 
 ![ImageArticle][image2]
 Image taken from [[1]](#1).
+
+Modification of the Critic´s action-value function estimate, modifies the loss function from DDPG into:
+
+<img src="https://render.githubusercontent.com/render/math?math=L(\theta) = \hat{E}_{(\vec x,\vec a,r',\vec x')}[sum(r',  \gamma \hat{q_i}(\vec x', \vec{\mu}', (\phi_{frozen}),\theta_{frozen})) - \hat{q}(\vec x, \vec{\mu},\theta)]^2">,
+
 
 ## Algorithm
 
