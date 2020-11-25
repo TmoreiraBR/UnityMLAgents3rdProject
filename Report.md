@@ -94,7 +94,7 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
 * Initialize a random process <img src="https://render.githubusercontent.com/render/math?math=vec R"> for action exploration
 * Receive initial state <img src="https://render.githubusercontent.com/render/math?math=vec x">
 * **For** t = 1 to max-episode-length **do**
-  * for each agent i, select action <img src="https://render.githubusercontent.com/render/math?math=a_i = \mu_i(o_i, \phi_i) + R_t"> w.r.t. the current policy and exploration
+  * for each agent i, select action <img src="https://render.githubusercontent.com/render/math?math=a_i = sum(\mu_i(o_i, \phi_i), R_t)"> w.r.t. the current policy and exploration
   * Execute actions <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]"> and observe reward <img src="https://render.githubusercontent.com/render/math?math=r"> and new state <img src="https://render.githubusercontent.com/render/math?math=\vec x'">
   * Store <img src="https://render.githubusercontent.com/render/math?math=(\vec x, \vec a, r, \vec x')"> in a replay buffer D
   * <img src="https://render.githubusercontent.com/render/math?math=\vec x \leftarrow \vec x'">
