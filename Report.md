@@ -101,11 +101,15 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
   * **For** Agent i=1 to N **do**
     * Sample a random minibatch of **S** samples <img src="https://render.githubusercontent.com/render/math?math=(\vec x^j, \vec a^j, \vec r^j, \vec x'^j)"> from D
     * Set <img src="https://render.githubusercontent.com/render/math?math=y^j = sum(r_i^j, \gamma \hat{q_i}(\vec x', \vec a',\theta_{frozen}))">, where <img src="https://render.githubusercontent.com/render/math?math=\vec a' = \vec{\mu'}(\vec{\phi}_{frozen})">
-    * Update Critic by minimizing the loss <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{S} \sum_j [y^j - \hat{q}(\vec x, \vec{\mu}(\vec{\phi}),\theta)]^2">
+    * Update Critic by minimizing the loss <img src="https://render.githubusercontent.com/render/math?math=L(\theta_i) = \frac{1}{S} \sum_j [y^j - \hat{q}(\vec x^j, \vec{\mu^j}(\vec{\phi}),\theta)]^2">
+    * Update Actor using the sampled policy gradient: <img src="https://render.githubusercontent.com/render/math?math=\nabla_{\phi_i} J(\mu_i) = \frac{1}{S} \sum_j \nabla_{\mu_i}\hat{q_i}(\vec x^j, \vec{\mu^j}(\vec{\phi}), \theta) \nabla_{\phi_i} \mu_i(o_i^j, \phi_i)">
+  * Update target network parameters for each Agent i: 
+  <img src="https://render.githubusercontent.com/render/math?math=\theta' \leftarrow sum(\tau \theta_i, (1 - \tau) \theta_i')">
+  <img src="https://render.githubusercontent.com/render/math?math=\phi' \leftarrow sum(\tau \phi_i, (1 - \tau) \phi_i')">
     
 ## Hyperparameters and Neural Network Architecture
 
-After a couple of attempts hyperparameter values that could reach the minimum of 30+ cumulative rewards in 100 episodes were obtained. These are:
+After a couple of attempts hyperparameter values that could reach the minimum of an average .5+ rewards in 100 episodes were obtained. These are:
 
 Hyperparameter value  | Description
 ------------- | -------------
