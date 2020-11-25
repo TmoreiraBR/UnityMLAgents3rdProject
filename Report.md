@@ -65,9 +65,9 @@ In a multi-agent setting, where each Agent has its own Actor and Critic networks
 
 In other to solve this issue, MADDPG proposes an augmented Critic for each Agent, named centralized action-value function, that receives observations and actions for all agents in the environment:
 
-<img src="https://render.githubusercontent.com/render/math?math=q_i^{\pi} (\vec x, \vec a")>,
+<img src="https://render.githubusercontent.com/render/math?math=q_i^{\pi} (\vec x, \vec a)">,
 
-where <img src="https://render.githubusercontent.com/render/math?math=\vec x> is a vector with all observation from all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec x = [o_1, o_2, ..., o_N]> and <img src="https://render.githubusercontent.com/render/math?math=\vec a> is a vector with all actions performed by all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]>.
+where <img src="https://render.githubusercontent.com/render/math?math=\vec x"> is a vector with all observation from all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec x = [o_1, o_2, ..., o_N]"> and <img src="https://render.githubusercontent.com/render/math?math=\vec a"> is a vector with all actions performed by all N Agents <img src="https://render.githubusercontent.com/render/math?math=\vec a = [a_1, a_2, ..., a_N]">.
 
 The Actor for each Agent remains unaltered, where each Agent's action only depends on the Agent local observations. A visual representation of MADDPG was sketched in [[1]](#1):
 
