@@ -76,7 +76,9 @@ Image taken from [[1]](#1).
 
 Modification of the Critic´s action-value function estimate, modifies the loss function from DDPG into:
 
-<img src="https://render.githubusercontent.com/render/math?math=L(\theta) = \hat{E}_{(\vec x,\vec a,r',\vec x')}[sum(r',  \gamma \hat{q_i}(\vec x', \vec{\mu}', (\phi_{frozen}),\theta_{frozen})) - \hat{q}(\vec x, \vec{\mu},\theta)]^2">,
+<img src="https://render.githubusercontent.com/render/math?math=L(\theta) = \hat{E}_{(\vec x,\vec a,r',\vec x')}[sum(r',  \gamma \hat{q_i}(\vec x', \vec{\mu}'(\vec{\phi}_{frozen}),\theta_{frozen})) - \hat{q}(\vec x, \vec{\mu}(\vec{\phi}),\theta)]^2">, where
+
+<img src="https://render.githubusercontent.com/render/math?math=\vec{\mu}(\vec{\phi}) = [\mu_1(o_1, \phi_1), \mu_2(o_2, \phi_2), ...,  \mu_N(o_N, \phi_N),]">,
 
 
 ## Algorithm
