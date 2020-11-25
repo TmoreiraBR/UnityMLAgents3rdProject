@@ -104,9 +104,8 @@ Detailed Algorithim pseudocode, edited from [[1]](#1)
     * Update Critic by minimizing the loss <img src="https://render.githubusercontent.com/render/math?math=L(\theta_i) = \frac{1}{S} \sum_j [y^j - \hat{q}(\vec x^j, \vec{\mu^j}(\vec{\phi}),\theta)]^2">
     * Update Actor using the sampled policy gradient: <img src="https://render.githubusercontent.com/render/math?math=\nabla_{\phi_i} J(\mu_i) = \frac{1}{S} \sum_j \nabla_{\mu_i}\hat{q_i}(\vec x^j, \vec{\mu^j}(\vec{\phi}), \theta) \nabla_{\phi_i} \mu_i(o_i^j, \phi_i)">
   * Update target network parameters for each Agent i: 
-  <img src="https://render.githubusercontent.com/render/math?math=\theta' \leftarrow sum(\tau \theta_i, (1 - \tau) \theta_i')">
-  
-  <img src="https://render.githubusercontent.com/render/math?math=\phi' \leftarrow sum(\tau \phi_i, (1 - \tau) \phi_i')">
+  * <img src="https://render.githubusercontent.com/render/math?math=\theta' \leftarrow sum(\tau \theta_i, (1 - \tau) \theta_i')">
+  * <img src="https://render.githubusercontent.com/render/math?math=\phi' \leftarrow sum(\tau \phi_i, (1 - \tau) \phi_i')">
     
 ## Hyperparameters and Neural Network Architecture
 
