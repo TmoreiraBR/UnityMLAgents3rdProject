@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 [//]: # (Image References)
 
-[image2]: https://github.com/TmoreiraBR/UnityMLAgents2ndProject-MultiAgent/blob/main/TrainedResults.jpg  "Training Agents"
+[image2]: https://github.com/TmoreiraBR/UnityMLAgents3rdProject/blob/main/TrainedResults.jpg  "Training Agents"
 
 # Report for Project 2: Continuous Control
 
